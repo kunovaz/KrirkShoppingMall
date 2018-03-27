@@ -6,9 +6,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import kukiat.krirk.ac.th.krirkshoppingmall.R;
+import kukiat.krirk.ac.th.krirkshoppingmall.utility.MyAlert;
 
 /**
  * Created by Cnz on 06/03/2018.
@@ -23,8 +26,35 @@ public class MainFragment extends Fragment {
 //        Register Controller
         registerController();
 
+//        Login Controller
+        loginController();
 
     } // Main Method
+
+    private void loginController() {
+        Button button = getView().findViewById(R.id.btnLogin);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText userEditText = getView().findViewById(R.id.edtUsername);
+                EditText passwordEditText = getView().findViewById(R.id.edtPassword);
+
+                String userString = userEditText.getText().toString().trim();
+                String passwordString = passwordEditText.getText().toString().trim();
+
+                if (userString.isEmpty() || passwordString.isEmpty()) {
+//                    Have Space
+                    MyAlert myAlert = new MyAlert(getActivity());
+                    myAlert.myDialog(getString(R.string.title_have_space),
+                            getString(R.string.message_have_space));
+                } else {
+//                    No Space
+                }
+
+
+            }
+        });
+    }
 
     private void registerController() {
         TextView textView = getView().findViewById(R.id.txtNewRegister);
