@@ -5,4 +5,11 @@ package kukiat.krirk.ac.th.krirkshoppingmall.utility;
  */
 
 public class MyConstant {
-}
+
+//     About URL
+    private String urlAddUserString = "http://androidthai.in.th/kir/addDataGame.php";
+
+    public String getUrlAddUserString() {
+        return urlAddUserString;
+    }
+} // Main Class

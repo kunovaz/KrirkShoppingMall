@@ -95,6 +95,10 @@ public class RegisterFragment extends Fragment {
                     "Please Choose Mode");
         } else {
 //            Choose Mode OK
+
+
+
+
         }
 
     } // uploadToServer
