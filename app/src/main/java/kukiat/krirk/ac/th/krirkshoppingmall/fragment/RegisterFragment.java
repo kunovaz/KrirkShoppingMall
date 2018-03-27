@@ -12,10 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import kukiat.krirk.ac.th.krirkshoppingmall.MainActivity;
 import kukiat.krirk.ac.th.krirkshoppingmall.R;
+import kukiat.krirk.ac.th.krirkshoppingmall.utility.AddNewUserToServer;
 import kukiat.krirk.ac.th.krirkshoppingmall.utility.MyAlert;
+import kukiat.krirk.ac.th.krirkshoppingmall.utility.MyConstant;
 
 /**
  * Created by Cnz on 06/03/2018.
@@ -78,8 +81,8 @@ public class RegisterFragment extends Fragment {
         EditText passwordEditText = getView().findViewById(R.id.edtPassword);
 
         nameString = nameEditText.getText().toString().trim();
-        usernameString = usernameEditText.toString().trim();
-        passwordString = passwordEditText.toString().trim();
+        usernameString = usernameEditText.getText().toString().trim();
+        passwordString = passwordEditText.getText().toString().trim();
 
 //        Check Space
         if (nameString.isEmpty() || usernameString.isEmpty() || passwordString.isEmpty()) {
@@ -95,11 +98,27 @@ public class RegisterFragment extends Fragment {
                     "Please Choose Mode");
         } else {
 //            Choose Mode OK
+            try {
+
+                MyConstant myConstant = new MyConstant();
+                AddNewUserToServer addNewUserToServer = new AddNewUserToServer(getActivity());
+                addNewUserToServer.execute(nameString, usernameString, passwordString, modeString, myConstant.getUrlAddUserString());
+
+                String result = addNewUserToServer.get();
+                if (Boolean.parseBoolean(result)) {
+                    getActivity().getSupportFragmentManager().popBackStack();
+                } else {
+                    Toast.makeText(getActivity(), "Press Try Again Cannot Add User", Toast.LENGTH_LONG).show();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
 
 
 
-        }
+        } // if
 
     } // uploadToServer
 
