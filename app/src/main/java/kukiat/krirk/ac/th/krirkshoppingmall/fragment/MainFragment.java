@@ -1,5 +1,6 @@
 package kukiat.krirk.ac.th.krirkshoppingmall.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import kukiat.krirk.ac.th.krirkshoppingmall.R;
+import kukiat.krirk.ac.th.krirkshoppingmall.ServiceActivity;
 import kukiat.krirk.ac.th.krirkshoppingmall.utility.GetAllDataByURL;
 import kukiat.krirk.ac.th.krirkshoppingmall.utility.MyAlert;
 import kukiat.krirk.ac.th.krirkshoppingmall.utility.MyConstant;
@@ -95,6 +97,12 @@ public class MainFragment extends Fragment {
 //                            Password True
                             Toast.makeText(getActivity(), "Wellcome " + loginStrings[1],
                                     Toast.LENGTH_SHORT).show();
+
+//                            Move to ServiceActivity
+                            Intent intent = new Intent(getActivity(), ServiceActivity.class);
+                            intent.putExtra("Login", loginStrings);
+                            startActivity(intent);
+                            getActivity().finish();
 
                         } else {
 //                            Password False
